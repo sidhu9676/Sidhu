@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Git Branch')
+    }
+
+    stages {
+        stage('SCM Checkout') {
+            steps {
+                echo "Pulling code from ${params.BRANCH_NAME}"
+
+                git branch: params.BRANCH_NAME,
+                    url: 'https://github.com/your-username/your-repo.git'
+            }
+        }
+    }
+}
